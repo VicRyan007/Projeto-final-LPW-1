@@ -1,0 +1,100 @@
+
+body {
+    font-family: "Katibeh", serif;
+    font-size: 3em;
+    color: white;
+    background-color: black;
+}
+
+header>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#title{
+    font-size: 2em;   
+    margin: auto;
+}
+
+#subtitle{
+    font-size: 0.7em;
+}
+
+#imagem{
+    display: flex;
+    align-items: center;
+    outline: 3px solid white;
+    overflow: hidden;
+    margin: 50px auto;
+    box-shadow: 10px 10px 15px rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+}
+
+#select{
+    text-align: center;
+    margin-top: 20px;
+}
+
+#cidade{
+    font-size: 0.7em;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 26px;
+    box-shadow: 10px 10px 7px rgba(255, 255, 255, 0.7);
+
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 1em;
+}
+
+#card {
+    width: calc(23.33%);     
+    margin-bottom: 20px; 
+    padding: 1em;
+    border-radius: 30px;
+    background-color: #D3CECE;
+    font-size: 0.7em;
+    color: black;
+    box-shadow: 10px 10px 10px 0.5px black;
+}
+
+
+footer > a{
+    display: flex;
+    justify-content: center;
+    
+}
+
+footer > a > button{
+    margin: 0 1em;
+    border-radius: 20px;
+    text-align: center;
+    width: 6em;
+    height: 2.5em;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: white;
+    border: 2px solid black;
+    box-shadow: 5px 5px gray
+}
+
+button:hover {
+    background-color: cadetblue;
+}
+
+
+
+@media (max-width: 992px) {
+  #card { width: calc(48%); }
+}
+
+@media (max-width: 600px) {
+  body { font-size: 2em; }
+  #card { width: 100%; }
+}

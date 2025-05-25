@@ -1,0 +1,122 @@
+/* public/css/cultura.css */
+
+body {
+    font-family: "Katibeh", serif;
+    font-size: 3em;
+    color: white;
+    background-color: black;
+    line-height: 1.4;
+}
+
+header > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+#title {
+    font-size: 2em;
+    margin: 1rem 0;
+}
+
+#subtitle {
+    font-size: 0.7em;
+    margin: 0.5rem 0;
+    text-align: center;
+}
+
+#imagem {
+    display: block;
+    width: 90%;
+    max-width: 700px;
+    margin: 2rem auto;
+    outline: 3px solid white;
+    box-shadow: 10px 10px 15px rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+#select {
+    text-align: center;
+    margin: 2rem auto;
+    max-width: 20%;
+}
+
+#cidade {
+    font-size: 0.7em;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+    border-radius: 26px;
+    box-shadow: 10px 10px 7px rgba(255, 255, 255, 0.7);
+    border: none;
+    width: 100%;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+#card {
+    background-color: #D3CECE;
+    color: black;
+    border-radius: 30px;
+    padding: 1.5rem;
+    font-size: 0.7em;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+    flex: 0 1 calc(23.33% - 2rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+footer {
+    text-align: center;
+    margin: 3rem 0;
+}
+
+footer > a > button {
+    border-radius: 20px;
+    width: 6em;
+    height: 2.5em;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    background-color: white;
+    border: 2px solid black;
+    box-shadow: 5px 5px gray;
+    cursor: pointer;
+}
+
+footer > a > button:hover {
+    background-color: cadetblue;
+}
+
+/* responsividade */
+@media (max-width: 992px) {
+    #card {
+        flex: 0 1 calc(48% - 2rem);
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 2em;
+    }
+    #imagem {
+        width: 95%;
+    }
+    #select {
+        max-width: 100%;
+        margin: 1.5rem auto;
+    }
+    #card {
+        flex: 0 1 100%;
+    }
+}
