@@ -1,4 +1,3 @@
-// models/event.js
 module.exports = (sequelize, DataTypes) => {
   const Event = sequelize.define('Event', {
     id: {
@@ -14,12 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    // para Cultura, Leilão e Workshop
+    
     date: {
       type: DataTypes.DATEONLY,
       allowNull: true
     },
-    // para Shows e, se quiser, para precisão de horário
+    
     time: {
       type: DataTypes.TIME,
       allowNull: true

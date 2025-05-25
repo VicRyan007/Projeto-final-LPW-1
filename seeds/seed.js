@@ -1,20 +1,20 @@
-// seeds/seed.js
-const { sequelize, Event } = require('../models');  // <- correção aqui
+
+const { sequelize, Event } = require('../models');  
 
 async function seed() {
-  // 1) garante que as tabelas existem
+  
   await sequelize.sync();
 
-  // 2) conta quantos eventos já há
+  
   const count = await Event.count();
   if (count > 0) {
     console.log('Banco já populado, nada a fazer.');
     process.exit(0);
   }
 
-  // 3) dados de seed, adaptados dos seus HTML estáticos
+  
   await Event.bulkCreate([
-    // ——— Cultura ———
+    
     {
       city: 'Fortaleza',
       title: 'Exposição de Fotografia "Retratos da Cidade"',
@@ -34,7 +34,7 @@ async function seed() {
       type: 'cultura'
     },
 
-    // ——— Leilões ———
+    
     {
       city: 'Recife',
       title: 'Leilão de Arte Clássica',
@@ -72,7 +72,7 @@ async function seed() {
       type: 'leilao'
     },
 
-    // ——— Shows ———
+    
     {
       city: 'Recife',
       title: 'Lagum',
@@ -128,7 +128,7 @@ async function seed() {
       type: 'show'
     },
 
-    // ——— Workshops ———
+    
     {
       city: 'Recife',
       title: 'Workshop de Fotografia',
