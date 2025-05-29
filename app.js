@@ -1,87 +1,68 @@
-
-const path      = require('path');
-const express   = require('express');
+const path = require('path');
+const express = require('express');
 const { sequelize, Event } = require('./models');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-
-
-app.use(express.static(path.join(__dirname, 'public')));
-
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'html', 'index.html'));
+});
 
-const TYPE_MAP = {
-  cultura:   'cultura',
-  leiloes:   'leilao',
-  shows:     'show',
-  workshops: 'workshop'
-};
-
-
-app.get('/:section', async (req, res, next) => {
+app.get('/api/cities', async (req, res, next) => {
   try {
-    const section    = req.params.section;
-    const eventType  = TYPE_MAP[section];
-
-    
-    if (!eventType) {
-      return res.status(404).send('Página não encontrada');
+    const { type } = req.query;
+    if (!type) {
+      return res.status(400).json({ error: 'Parâmetro "type" é obrigatório' });
     }
 
-    const selectedCity = req.query.city || '';
-
-    
     const citiesRaw = await Event.findAll({
-      where: { type: eventType },
+      where: { type },
       attributes: [
         [sequelize.fn('DISTINCT', sequelize.col('city')), 'city']
       ]
     });
+
     const cidades = citiesRaw.map(r => r.get('city'));
-
-    
-    const where = { type: eventType };
-    if (selectedCity) where.city = selectedCity;
-
-    
-    const order = section === 'shows' ? [['time','ASC']] : [['date','ASC']];
-    const eventos = await Event.findAll({ where, order });
-
-    
-    return res.render(`${section}/index`, {
-      eventos,
-      cidades,
-      selectedCity
-    });
+    res.json(cidades);
   } catch (err) {
     next(err);
   }
 });
 
+app.get('/api/events', async (req, res, next) => {
+  try {
+    const { type, city } = req.query;
 
+    if (!type) {
+      return res.status(400).json({ error: 'Parâmetro "type" é obrigatório' });
+    }
 
-app.get('/', (req, res) => res.render('index'));
+    const where = { type };
+    if (city) where.city = city;
 
+    const order = type === 'show' ? [['time', 'ASC']] : [['date', 'ASC']];
+    const eventos = await Event.findAll({ where, order });
 
-app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(500).send('Erro no servidor');
+    res.json(eventos);
+  } catch (error) {
+    next(error);
+  }
 });
 
+app.use((err, req, res, next) => {
+  console.error('Erro no servidor:', err);
+  res.status(500).send('Erro interno no servidor');
+});
 
-sequelize.sync()
-  .then(() => {
-    console.log('DB sincronizado');
-    app.listen(PORT, () => {
-      console.log(`Servidor em http://localhost:${PORT}`);
-    });
-  })
-  .catch(console.error);
+sequelize.sync().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
+  });
+}).catch(err => {
+  console.error('Erro ao sincronizar DB:', err);
+});

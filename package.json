@@ -6,15 +6,13 @@
   "scripts": {
     "start": "node app.js",
     "seed": "node seeds/seed.js",
-    "dev": "npm run seed && nodemon --watch app.js --watch models --watch views --ext js,ejs,css app.js"
+    "dev": "npm run seed && nodemon --watch app.js --watch models --watch public --ext js,json,css,html app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ejs": "^3.1.10",
     "express": "^5.1.0",
-    "nodemon": "^3.1.10",
     "sequelize": "^6.37.7",
     "sqlite3": "^5.1.7"
   },

@@ -48,19 +48,24 @@ header>div {
 .cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 1em;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    margin: 0 auto;
+    max-width: 100%;
 }
 
 #card {
-    width: calc(23.33%);     
-    margin-bottom: 20px; 
-    padding: 1em;
-    border-radius: 30px;
     background-color: #D3CECE;
-    font-size: 0.7em;
     color: black;
-    box-shadow: 10px 10px 10px 0.5px black;
+    border-radius: 30px;
+    padding: 1.5rem;
+    font-size: 0.7em;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+    flex: 0 1 calc(23.33% - 2rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 
