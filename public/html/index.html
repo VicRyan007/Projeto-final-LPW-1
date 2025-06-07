@@ -3,50 +3,73 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Epic & Eventually</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Epic & Eventually - Seu portal para eventos locais, workshops, shows e leilões" />
+    <meta name="keywords" content="eventos, shows, workshops, leilões, cultura" />
+    <title>Epic & Eventually - Eventos Locais</title>
     <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
 
 <body>
-    <header>
-        <div id="header-logo">
-            <img id="logo" src="../assets/Epic & Eventually.png" alt="Logo" />
-            <div id="botoes">
-                <button onclick="location.href='/html/leiloes.html'">Leilões</button>
-                <button onclick="location.href='/html/shows.html'">Shows</button>
-                <button onclick="location.href='/html/workshops.html'">Workshops</button>
-                <button onclick="location.href='/html/cultura.html'">Cultura</button>
-
+    <header class="main-header">
+        <nav class="nav-container">
+            <div class="logo-container">
+                <a href="/html/index.html" style="text-decoration:none;">
+                    <span style="font-size:2rem; font-weight:bold; color:#fff; letter-spacing:2px;">Epic & Eventually</span>
+                </a>
             </div>
-        </div>
+            <div class="nav-buttons">
+                <a href="/html/leiloes.html" class="nav-button">Leilões</a>
+                <a href="/html/shows.html" class="nav-button">Shows</a>
+                <a href="/html/workshops.html" class="nav-button">Workshops</a>
+                <a href="/html/cultura.html" class="nav-button">Cultura</a>
+            </div>
+        </nav>
     </header>
 
-    <div class="carrossel">
-        <ul>
-            <li><img src="../assets/Evento 1.png" alt="Evento 1" /></li>
-            <li><img src="../assets/Evento 2.png" alt="Evento 2" /></li>
-            <li><img src="../assets/Evento 3.png" alt="Evento 3" /></li>
-        </ul>
-    </div>
+    <main>
+        <section class="carousel-section">
+            <div class="carousel">
+                <ul class="carousel-list">
+                    <li class="carousel-item">
+                        <img src="../assets/Evento 1.png" alt="Evento em destaque 1" />
+                        <div class="carousel-caption">Eventos exclusivos e experiências únicas</div>
+                    </li>
+                    <li class="carousel-item">
+                        <img src="../assets/Evento 2.png" alt="Evento em destaque 2" />
+                        <div class="carousel-caption">Descubra o melhor da sua cidade</div>
+                    </li>
+                    <li class="carousel-item">
+                        <img src="../assets/Evento 3.png" alt="Evento em destaque 3" />
+                        <div class="carousel-caption">Participe, viva, compartilhe!</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
 
-    <div class="cards">
-        <div id="card">
-            <p>
-                Epic & Eventually é o seu portal para eventos locais, destacando workshops, shows,
-                leilões e muito mais, tudo em um formato conciso e fácil de navegar.
-            </p>
-        </div>
-        <div id="card">
-            <p>
-                Navegue nas seções e use os filtros para encontrar eventos na sua cidade.
-            </p>
-        </div>
-    </div>
+        <section class="info-cards">
+            <article class="info-card">
+                <i class="fas fa-calendar-alt card-icon"></i>
+                <p>
+                    Epic & Eventually é o seu portal para eventos locais, destacando workshops, shows,
+                    leilões e muito mais, tudo em um formato conciso e fácil de navegar.
+                </p>
+            </article>
+            <article class="info-card">
+                <i class="fas fa-search card-icon"></i>
+                <p>
+                    Navegue nas seções e use os filtros para encontrar eventos na sua cidade.
+                </p>
+            </article>
+        </section>
+    </main>
 
-    <footer>
-        <p>© 2024 - IFPE</p>
+    <footer class="main-footer">
+        <p>&copy; 2024 - IFPE | Todos os direitos reservados</p>
     </footer>
+
+    <script src="../js/main.js"></script>
 </body>
 
 </html>
