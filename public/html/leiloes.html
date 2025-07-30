@@ -8,7 +8,6 @@
   <title>Leilões - Epic & Eventually</title>
   <link rel="stylesheet" href="../css/main.css" />
   <link rel="stylesheet" href="../css/shows.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
 
 <body>
@@ -19,7 +18,12 @@
           <span style="font-size:2rem; font-weight:bold; color:#fff; letter-spacing:2px;">Epic & Eventually</span>
         </a>
       </div>
-      <div class="nav-buttons">
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-buttons" id="nav-buttons">
         <a href="/html/leiloes.html" class="nav-button active">Leilões</a>
         <a href="/html/shows.html" class="nav-button">Shows</a>
         <a href="/html/workshops.html" class="nav-button">Workshops</a>
@@ -27,6 +31,7 @@
       </div>
     </nav>
   </header>
+  <div class="menu-overlay" id="menu-overlay"></div>
 
   <main class="event-page">
     <section class="event-hero" style="background: linear-gradient(rgba(44,62,80,0.7), rgba(44,62,80,0.7)), url('../assets/Leilao.jpg') center/cover no-repeat; color: #fff;">
@@ -57,13 +62,50 @@
   <footer class="main-footer">
     <div class="footer-content">
       <a href="/html/index.html" class="back-button">
-        <i class="fas fa-arrow-left"></i> Voltar para Home
+        ← Voltar para Home
       </a>
       <p>&copy; 2024 - IFPE | Todos os direitos reservados</p>
     </div>
   </footer>
 
   <script src="../js/event.js" type="module"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.getElementById('hamburger');
+      const navButtons = document.getElementById('nav-buttons');
+      const menuOverlay = document.getElementById('menu-overlay');
+
+      if (!hamburger || !navButtons || !menuOverlay) return;
+
+      function toggleMenu() {
+        hamburger.classList.toggle('active');
+        navButtons.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        document.body.style.overflow = navButtons.classList.contains('active') ? 'hidden' : '';
+      }
+
+      function closeMenu() {
+        hamburger.classList.remove('active');
+        navButtons.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      hamburger.addEventListener('click', toggleMenu);
+      menuOverlay.addEventListener('click', closeMenu);
+
+      const navLinks = navButtons.querySelectorAll('.nav-button');
+      navLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          closeMenu();
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>

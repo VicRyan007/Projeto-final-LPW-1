@@ -3,58 +3,82 @@ const { Event } = require('../models');
 async function seed() {
   try {
     await Event.createTable();
-
     await Event.destroy({ where: {} });
 
-    const events = [
-      { city: 'São Paulo', title: 'Show - Coldplay', date: '2025-09-10', time: '21:00', location: 'Allianz Parque', description: 'A banda britânica Coldplay retorna ao Brasil com sua turnê mundial. Imperdível!', type: 'show' },
-      { city: 'Rio de Janeiro', title: 'Show - Ivete Sangalo', date: '2025-08-15', time: '20:00', location: 'Maracanã', description: 'Ivete Sangalo em um show especial com convidados. Energia e alegria garantidas!', type: 'show' },
-      { city: 'Recife', title: 'Show - Alceu Valença', date: '2025-07-20', time: '19:30', location: 'Classic Hall', description: 'Alceu Valença apresenta seus maiores sucessos em Recife.', type: 'show' },
-      { city: 'Belo Horizonte', title: 'Show - Skank', date: '2025-10-05', time: '18:00', location: 'Mineirão', description: 'Skank faz show de despedida em BH. Não perca!', type: 'show' },
-      { city: 'Salvador', title: 'Show - BaianaSystem', date: '2025-11-12', time: '22:00', location: 'Arena Fonte Nova', description: 'BaianaSystem agita Salvador com seu som único.', type: 'show' },
-      { city: 'Fortaleza', title: 'Show - Wesley Safadão', date: '2025-12-01', time: '21:30', location: 'Centro de Eventos do Ceará', description: 'Wesley Safadão traz o melhor do forró para Fortaleza.', type: 'show' },
-      { city: 'Porto Alegre', title: 'Show - Anitta', date: '2025-10-20', time: '20:30', location: 'Arena do Grêmio', description: 'Anitta apresenta seus hits em Porto Alegre.', type: 'show' },
-      { city: 'Brasília', title: 'Show - Legião Urbana Cover', date: '2025-09-25', time: '19:00', location: 'Estádio Mané Garrincha', description: 'Tributo à Legião Urbana com grandes clássicos.', type: 'show' },
-      { city: 'Curitiba', title: 'Show - Sandy & Junior', date: '2025-08-30', time: '21:00', location: 'Pedreira Paulo Leminski', description: 'Sandy & Junior em turnê comemorativa.', type: 'show' },
-      { city: 'Manaus', title: 'Show - Jorge & Mateus', date: '2025-07-18', time: '20:00', location: 'Sambódromo de Manaus', description: 'Dupla sertaneja Jorge & Mateus em Manaus.', type: 'show' },
-
-      { city: 'São Paulo', title: 'Workshop de Fotografia com Araquém Alcântara', date: '2025-06-12', time: '09:00', location: 'MIS - Museu da Imagem e do Som', description: 'Aprenda técnicas de fotografia com um dos maiores fotógrafos do Brasil.', type: 'workshop' },
-      { city: 'Recife', title: 'Workshop de Gastronomia Nordestina', date: '2025-07-03', time: '14:00', location: 'Senac Recife', description: 'Descubra os segredos da culinária nordestina com chefs renomados.', type: 'workshop' },
-      { city: 'Rio de Janeiro', title: 'Workshop de Dança com Carlinhos de Jesus', date: '2025-08-22', time: '16:00', location: 'Teatro Municipal', description: 'Aulas práticas de samba e dança de salão com Carlinhos de Jesus.', type: 'workshop' },
-      { city: 'Belo Horizonte', title: 'Workshop de Programação Web', date: '2025-09-18', time: '10:00', location: 'PUC Minas', description: 'Aprenda a criar sites modernos com HTML, CSS e JavaScript.', type: 'workshop' },
-      { city: 'Salvador', title: 'Workshop de Maquiagem Profissional', date: '2025-10-10', time: '13:00', location: 'Senac Salvador', description: 'Técnicas de maquiagem com profissionais renomados.', type: 'workshop' },
-      { city: 'Fortaleza', title: 'Workshop de Empreendedorismo Digital', date: '2025-11-05', time: '15:00', location: 'SEBRAE Fortaleza', description: 'Dicas e estratégias para empreender online.', type: 'workshop' },
-      { city: 'Porto Alegre', title: 'Workshop de Cerveja Artesanal', date: '2025-12-02', time: '18:00', location: 'Cervejaria POA', description: 'Aprenda a produzir cerveja artesanal em casa.', type: 'workshop' },
-      { city: 'Brasília', title: 'Workshop de Oratória', date: '2025-09-28', time: '09:30', location: 'Centro de Convenções Ulysses Guimarães', description: 'Desenvolva habilidades de comunicação e oratória.', type: 'workshop' },
-      { city: 'Curitiba', title: 'Workshop de Design Gráfico', date: '2025-08-18', time: '11:00', location: 'UTFPR', description: 'Ferramentas e técnicas de design gráfico.', type: 'workshop' },
-      { city: 'Manaus', title: 'Workshop de Sustentabilidade', date: '2025-07-22', time: '14:30', location: 'Sesi Manaus', description: 'Práticas sustentáveis para o dia a dia.', type: 'workshop' },
-
-      { city: 'São Paulo', title: 'Leilão de Arte Moderna', date: '2025-06-25', time: '19:00', location: 'Casa de Leilões São Paulo', description: 'Obras de artistas renomados como Tarsila do Amaral e Di Cavalcanti.', type: 'leilao' },
-      { city: 'Recife', title: 'Leilão de Antiguidades', date: '2025-07-10', time: '18:00', location: 'Leilões Recife', description: 'Peças raras e históricas do Brasil colonial.', type: 'leilao' },
-      { city: 'Salvador', title: 'Leilão de Joias e Relógios', date: '2025-08-05', time: '20:00', location: 'Leilões Bahia', description: 'Joias exclusivas e relógios de luxo em destaque.', type: 'leilao' },
-      { city: 'Fortaleza', title: 'Leilão de Automóveis Clássicos', date: '2025-09-12', time: '17:00', location: 'Centro de Eventos do Ceará', description: 'Carros clássicos nacionais e importados para colecionadores.', type: 'leilao' },
-      { city: 'Porto Alegre', title: 'Leilão de Vinhos Raros', date: '2025-10-18', time: '20:00', location: 'Leilões POA', description: 'Vinhos raros e colecionáveis de várias regiões.', type: 'leilao' },
-      { city: 'Brasília', title: 'Leilão de Imóveis', date: '2025-11-08', time: '15:00', location: 'Leilões DF', description: 'Oportunidades em imóveis residenciais e comerciais.', type: 'leilao' },
-      { city: 'Curitiba', title: 'Leilão de Obras de Arte', date: '2025-12-15', time: '19:30', location: 'Museu Oscar Niemeyer', description: 'Pinturas e esculturas de artistas paranaenses.', type: 'leilao' },
-      { city: 'Manaus', title: 'Leilão de Barcos e Lanchas', date: '2025-09-30', time: '16:00', location: 'Porto de Manaus', description: 'Embarcações para lazer e trabalho.', type: 'leilao' },
-      { city: 'Belo Horizonte', title: 'Leilão de Móveis Antigos', date: '2025-08-22', time: '18:30', location: 'Leilões BH', description: 'Móveis antigos e restaurados.', type: 'leilao' },
-      { city: 'Natal', title: 'Leilão de Colecionáveis', date: '2025-07-29', time: '17:00', location: 'Leilões Natal', description: 'Itens raros para colecionadores.', type: 'leilao' },
-
-      { city: 'São Paulo', title: 'Bienal Internacional do Livro', date: '2025-08-20', time: '10:00', location: 'Expo Center Norte', description: 'O maior evento literário do Brasil, com autores nacionais e internacionais.', type: 'cultura' },
-      { city: 'Recife', title: 'Carnaval do Recife', date: '2025-02-28', time: '12:00', location: 'Marco Zero', description: 'O tradicional carnaval multicultural do Recife, com blocos e shows gratuitos.', type: 'cultura' },
-      { city: 'Salvador', title: 'Festival da Primavera', date: '2025-09-21', time: '15:00', location: 'Parque da Cidade', description: 'Música, arte e gastronomia celebrando a chegada da primavera.', type: 'cultura' },
-      { city: 'Fortaleza', title: 'Mostra de Cinema Brasileiro', date: '2025-10-10', time: '19:00', location: 'Dragão do Mar', description: 'Exibição de filmes nacionais e debates com diretores.', type: 'cultura' },
-      { city: 'Porto Alegre', title: 'Festival de Jazz', date: '2025-11-14', time: '20:00', location: 'Usina do Gasômetro', description: 'Grandes nomes do jazz nacional e internacional.', type: 'cultura' },
-      { city: 'Brasília', title: 'Semana de Arte Moderna', date: '2025-12-03', time: '09:00', location: 'Museu Nacional', description: 'Exposições e palestras sobre arte moderna.', type: 'cultura' },
-      { city: 'Curitiba', title: 'Festival de Teatro', date: '2025-08-25', time: '18:00', location: 'Teatro Guaíra', description: 'Peças teatrais de grupos do Brasil inteiro.', type: 'cultura' },
-      { city: 'Manaus', title: 'Festival Folclórico de Parintins', date: '2025-06-28', time: '16:00', location: 'Bumbódromo', description: 'O maior festival folclórico da Amazônia.', type: 'cultura' },
-      { city: 'Belo Horizonte', title: 'Virada Cultural', date: '2025-09-12', time: '20:00', location: 'Praça da Estação', description: '24h de cultura, música e arte.', type: 'cultura' },
-      { city: 'Natal', title: 'Festival Literário de Natal', date: '2025-07-19', time: '11:00', location: 'Centro de Convenções', description: 'Autores, debates e lançamentos de livros.', type: 'cultura' }
+    const cities = [
+      'São Paulo', 'Rio de Janeiro', 'Recife', 'Belo Horizonte', 'Salvador', 
+      'Fortaleza', 'Porto Alegre', 'Brasília', 'Curitiba', 'Manaus', 'Natal'
     ];
+
+    const events = [];
+
+    // Shows - 6 por cidade
+    cities.forEach(city => {
+      const cityShows = [
+        { title: `Show - ${city} Rock Festival`, date: '2025-06-15', time: '20:00', location: `${city} Arena`, description: `Festival de rock com as melhores bandas da região de ${city}.`, type: 'show' },
+        { title: `Show - MPB em ${city}`, date: '2025-07-20', time: '21:00', location: `Teatro ${city}`, description: `Noite especial de MPB com artistas locais e nacionais.`, type: 'show' },
+        { title: `Show - Sertanejo ${city}`, date: '2025-08-10', time: '22:00', location: `${city} Convention Center`, description: `Os maiores nomes do sertanejo em ${city}.`, type: 'show' },
+        { title: `Show - Forró ${city}`, date: '2025-09-05', time: '23:00', location: `${city} Dance Hall`, description: `Noite de forró com as melhores bandas.`, type: 'show' },
+        { title: `Show - Jazz ${city}`, date: '2025-10-12', time: '19:30', location: `${city} Jazz Club`, description: `Jazz sofisticado em ambiente intimista.`, type: 'show' },
+        { title: `Show - Pop ${city}`, date: '2025-11-18', time: '20:30', location: `${city} Stadium`, description: `Show pop com artistas internacionais.`, type: 'show' }
+      ];
+      
+      cityShows.forEach(show => {
+        events.push({ ...show, city });
+      });
+    });
+
+    // Workshops - 6 por cidade
+    cities.forEach(city => {
+      const cityWorkshops = [
+        { title: `Workshop de Fotografia - ${city}`, date: '2025-06-20', time: '09:00', location: `${city} Photo Studio`, description: `Aprenda técnicas avançadas de fotografia.`, type: 'workshop' },
+        { title: `Workshop de Culinária - ${city}`, date: '2025-07-25', time: '14:00', location: `${city} Cooking School`, description: `Receitas tradicionais da região de ${city}.`, type: 'workshop' },
+        { title: `Workshop de Dança - ${city}`, date: '2025-08-15', time: '16:00', location: `${city} Dance Academy`, description: `Aulas de dança para todos os níveis.`, type: 'workshop' },
+        { title: `Workshop de Tecnologia - ${city}`, date: '2025-09-22', time: '10:00', location: `${city} Tech Hub`, description: `Programação e desenvolvimento web.`, type: 'workshop' },
+        { title: `Workshop de Arte - ${city}`, date: '2025-10-08', time: '13:00', location: `${city} Art Gallery`, description: `Pintura e técnicas artísticas.`, type: 'workshop' },
+        { title: `Workshop de Negócios - ${city}`, date: '2025-11-30', time: '15:00', location: `${city} Business Center`, description: `Empreendedorismo e gestão de negócios.`, type: 'workshop' }
+      ];
+      
+      cityWorkshops.forEach(workshop => {
+        events.push({ ...workshop, city });
+      });
+    });
+
+    // Leilões - 6 por cidade
+    cities.forEach(city => {
+      const cityAuctions = [
+        { title: `Leilão de Arte - ${city}`, date: '2025-06-28', time: '19:00', location: `${city} Auction House`, description: `Obras de arte de artistas locais e nacionais.`, type: 'leilao' },
+        { title: `Leilão de Automóveis - ${city}`, date: '2025-07-30', time: '18:00', location: `${city} Auto Auction`, description: `Carros usados e seminovos em ótimo estado.`, type: 'leilao' },
+        { title: `Leilão de Imóveis - ${city}`, date: '2025-08-25', time: '20:00', location: `${city} Real Estate`, description: `Oportunidades em imóveis residenciais.`, type: 'leilao' },
+        { title: `Leilão de Joias - ${city}`, date: '2025-09-18', time: '17:00', location: `${city} Jewelry Auction`, description: `Joias exclusivas e relógios de luxo.`, type: 'leilao' },
+        { title: `Leilão de Antiguidades - ${city}`, date: '2025-10-15', time: '16:30', location: `${city} Antique Shop`, description: `Peças raras e históricas.`, type: 'leilao' },
+        { title: `Leilão de Eletrônicos - ${city}`, date: '2025-11-20', time: '19:30', location: `${city} Tech Auction`, description: `Eletrônicos e gadgets em ótimo estado.`, type: 'leilao' }
+      ];
+      
+      cityAuctions.forEach(auction => {
+        events.push({ ...auction, city });
+      });
+    });
+
+    // Cultura - 6 por cidade
+    cities.forEach(city => {
+      const cityCulture = [
+        { title: `Festival Cultural - ${city}`, date: '2025-06-10', time: '15:00', location: `${city} Cultural Center`, description: `Festival multicultural com música, dança e arte.`, type: 'cultura' },
+        { title: `Exposição de Arte - ${city}`, date: '2025-07-12', time: '10:00', location: `${city} Museum`, description: `Exposição de artistas locais e nacionais.`, type: 'cultura' },
+        { title: `Teatro - ${city}`, date: '2025-08-08', time: '20:00', location: `${city} Theater`, description: `Peças teatrais de grupos locais.`, type: 'cultura' },
+        { title: `Cinema ao Ar Livre - ${city}`, date: '2025-09-14', time: '19:00', location: `${city} Park`, description: `Sessão de cinema ao ar livre.`, type: 'cultura' },
+        { title: `Feira de Livros - ${city}`, date: '2025-10-25', time: '11:00', location: `${city} Book Fair`, description: `Feira literária com autores e editoras.`, type: 'cultura' },
+        { title: `Festival Gastronômico - ${city}`, date: '2025-11-05', time: '12:00', location: `${city} Food Festival`, description: `Festival de gastronomia local.`, type: 'cultura' }
+      ];
+      
+      cityCulture.forEach(culture => {
+        events.push({ ...culture, city });
+      });
+    });
 
     await Event.bulkCreate(events);
 
-    console.log('Seed concluído com 10 eventos reais para cada tipo!');
+    console.log(`Seed concluído com ${events.length} eventos (6 por cidade para cada tipo)!`);
     process.exit(0);
   } catch (err) {
     console.error('Erro no seed:', err);

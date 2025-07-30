@@ -8,7 +8,6 @@
     <meta name="keywords" content="eventos, shows, workshops, leilões, cultura" />
     <title>Epic & Eventually - Eventos Locais</title>
     <link rel="stylesheet" href="../css/main.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
 
 <body>
@@ -19,7 +18,12 @@
                     <span style="font-size:2rem; font-weight:bold; color:#fff; letter-spacing:2px;">Epic & Eventually</span>
                 </a>
             </div>
-            <div class="nav-buttons">
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-buttons" id="nav-buttons">
                 <a href="/html/leiloes.html" class="nav-button">Leilões</a>
                 <a href="/html/shows.html" class="nav-button">Shows</a>
                 <a href="/html/workshops.html" class="nav-button">Workshops</a>
@@ -27,6 +31,7 @@
             </div>
         </nav>
     </header>
+    <div class="menu-overlay" id="menu-overlay"></div>
 
     <main>
         <section class="carousel-section">
@@ -50,14 +55,14 @@
 
         <section class="info-cards">
             <article class="info-card">
-                <i class="fas fa-calendar-alt card-icon"></i>
+                <span class="card-icon">📅</span>
                 <p>
                     Epic & Eventually é o seu portal para eventos locais, destacando workshops, shows,
                     leilões e muito mais, tudo em um formato conciso e fácil de navegar.
                 </p>
             </article>
             <article class="info-card">
-                <i class="fas fa-search card-icon"></i>
+                <span class="card-icon">🔍</span>
                 <p>
                     Navegue nas seções e use os filtros para encontrar eventos na sua cidade.
                 </p>

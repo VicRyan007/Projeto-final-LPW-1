@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     initializeCarousel();
     initializeScrollAnimation();
+    initializeMobileMenu();
 });
 
 function initializeCarousel() {
@@ -46,14 +47,40 @@ function initializeScrollAnimation() {
     });
 }
 
-function handleMobileMenu() {
-    const navButtons = document.querySelector('.nav-buttons');
-    if (window.innerWidth <= 768) {
-        navButtons.classList.add('mobile-menu');
-    } else {
-        navButtons.classList.remove('mobile-menu');
-    }
-}
+function initializeMobileMenu() {
+    const hamburger = document.getElementById('hamburger');
+    const navButtons = document.getElementById('nav-buttons');
+    const menuOverlay = document.getElementById('menu-overlay');
 
-window.addEventListener('resize', handleMobileMenu);
-handleMobileMenu(); 
+    if (!hamburger || !navButtons || !menuOverlay) return;
+
+    function toggleMenu() {
+        hamburger.classList.toggle('active');
+        navButtons.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        document.body.style.overflow = navButtons.classList.contains('active') ? 'hidden' : '';
+    }
+
+    function closeMenu() {
+        hamburger.classList.remove('active');
+        navButtons.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+
+    // Fechar menu ao clicar em um link
+    const navLinks = navButtons.querySelectorAll('.nav-button');
+    navLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Fechar menu ao redimensionar a tela para desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            closeMenu();
+        }
+    });
+} 

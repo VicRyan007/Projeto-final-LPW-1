@@ -103,17 +103,17 @@ class EventManager {
                 <div class="event-card-content">
                     <h3 class="event-card-title">${event.title}</h3>
                     <div class="event-card-info">
-                        <i class="fas fa-calendar"></i>
+                        <span>📅</span>
                         <span>${formattedDate}</span>
                     </div>
                     ${time ? `
                         <div class="event-card-info">
-                            <i class="fas fa-clock"></i>
+                            <span>🕐</span>
                             <span>${time}</span>
                         </div>
                     ` : ''}
                     <div class="event-card-info">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <span>📍</span>
                         <span>${event.city}</span>
                     </div>
                     <p class="event-card-description">${descricao}</p>
@@ -125,7 +125,7 @@ class EventManager {
     showLoading() {
         this.eventCards.innerHTML = `
             <div class="loading">
-                <i class="fas fa-spinner fa-spin"></i>
+                <span>⏳</span>
                 <p>Carregando eventos...</p>
             </div>
         `;
@@ -139,7 +139,7 @@ class EventManager {
     showError(message) {
         this.eventCards.innerHTML = `
             <div class="error-message">
-                <i class="fas fa-exclamation-circle"></i>
+                <span>⚠️</span>
                 <p>${message}</p>
             </div>
         `;
