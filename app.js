@@ -1,6 +1,6 @@
 const path = require('path');
 const express = require('express');
-const { sequelize, Event } = require('./models');
+const { Event } = require('./models');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,15 +20,8 @@ app.get('/api/cities', async (req, res, next) => {
       return res.status(400).json({ error: 'Parâmetro "type" é obrigatório' });
     }
 
-    const citiesRaw = await Event.findAll({
-      where: { type },
-      attributes: [
-        [sequelize.fn('DISTINCT', sequelize.col('city')), 'city']
-      ]
-    });
-
-    const cidades = citiesRaw.map(r => r.get('city'));
-    res.json(cidades);
+    const cities = await Event.findDistinctCities(type);
+    res.json(cities);
   } catch (err) {
     next(err);
   }
@@ -59,10 +52,17 @@ app.use((err, req, res, next) => {
   res.status(500).send('Erro interno no servidor');
 });
 
-sequelize.sync().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`);
-  });
-}).catch(err => {
-  console.error('Erro ao sincronizar DB:', err);
-});
+async function startServer() {
+  try {
+    await Event.createTable();
+    
+    app.listen(PORT, () => {
+      console.log(`Servidor rodando em http://localhost:${PORT}`);
+    });
+  } catch (err) {
+    console.error('Erro ao inicializar o servidor:', err);
+    process.exit(1);
+  }
+}
+
+startServer();

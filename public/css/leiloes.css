@@ -42,7 +42,6 @@ header>div {
     box-sizing: border-box;
     border-radius: 26px;
     box-shadow: 10px 10px 7px rgba(255, 255, 255, 0.7);
-
 }
 
 .cards {
@@ -68,11 +67,9 @@ header>div {
     justify-content: space-between;
 }
 
-
 footer > a{
     display: flex;
     justify-content: center;
-    
 }
 
 footer > a > button{
@@ -93,13 +90,84 @@ button:hover {
     background-color: cadetblue;
 }
 
-
-
-@media (max-width: 992px) {
-  #card { width: calc(48%); }
+@media (max-width: 1200px) {
+    #card {
+        flex: 0 1 calc(31% - 2rem);
+    }
 }
 
-@media (max-width: 600px) {
-  body { font-size: 2em; }
-  #card { width: 100%; }
+@media (max-width: 992px) {
+    #card {
+        flex: 0 1 calc(48% - 2rem);
+    }
+    
+    body {
+        font-size: 2.5em;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 2em;
+    }
+    
+    #card {
+        flex: 0 1 100%;
+        margin-bottom: 1rem;
+    }
+    
+    .cards {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    
+    #imagem {
+        margin: 30px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 1.8em;
+    }
+    
+    .cards {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    #card {
+        padding: 1rem;
+    }
+    
+    #imagem {
+        margin: 20px auto;
+    }
+    
+    footer > a > button {
+        font-size: 16px;
+        width: 5em;
+        height: 2.2em;
+    }
+}
+
+@media (max-width: 360px) {
+    body {
+        font-size: 1.6em;
+    }
+    
+    .cards {
+        padding: 0.8rem;
+        gap: 0.8rem;
+    }
+    
+    #card {
+        padding: 0.8rem;
+    }
+    
+    footer > a > button {
+        font-size: 14px;
+        width: 4.5em;
+        height: 2em;
+    }
 }

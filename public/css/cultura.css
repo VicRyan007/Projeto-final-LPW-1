@@ -98,25 +98,140 @@ footer > a > button:hover {
     background-color: cadetblue;
 }
 
+@media (max-width: 1200px) {
+    #card {
+        flex: 0 1 calc(31% - 2rem);
+    }
+    
+    #imagem {
+        width: 85%;
+    }
+}
 
 @media (max-width: 992px) {
     #card {
         flex: 0 1 calc(48% - 2rem);
     }
+    
+    #imagem {
+        width: 80%;
+    }
+    
+    #select {
+        max-width: 30%;
+    }
+    
+    body {
+        font-size: 2.5em;
+    }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     body {
         font-size: 2em;
     }
+    
     #imagem {
         width: 95%;
-    }
-    #select {
-        max-width: 100%;
         margin: 1.5rem auto;
     }
+    
+    #select {
+        max-width: 50%;
+        margin: 1.5rem auto;
+    }
+    
     #card {
         flex: 0 1 100%;
+        margin-bottom: 1rem;
+    }
+    
+    .cards {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    
+    header > div {
+        padding: 1.5rem 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 1.8em;
+    }
+    
+    #imagem {
+        width: 95%;
+        margin: 1rem auto;
+    }
+    
+    #select {
+        max-width: 80%;
+        margin: 1rem auto;
+    }
+    
+    .cards {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    #card {
+        padding: 1rem;
+    }
+    
+    header > div {
+        padding: 1rem 0.5rem;
+    }
+    
+    #title {
+        font-size: 1.8em;
+    }
+    
+    #subtitle {
+        font-size: 0.6em;
+    }
+    
+    footer > a > button {
+        font-size: 16px;
+        width: 5em;
+        height: 2.2em;
+    }
+}
+
+@media (max-width: 360px) {
+    body {
+        font-size: 1.6em;
+    }
+    
+    #imagem {
+        width: 98%;
+    }
+    
+    #select {
+        max-width: 90%;
+    }
+    
+    .cards {
+        padding: 0.8rem;
+        gap: 0.8rem;
+    }
+    
+    #card {
+        padding: 0.8rem;
+    }
+    
+    #title {
+        font-size: 1.6em;
+    }
+    
+    #subtitle {
+        font-size: 0.5em;
+    }
+    
+    footer > a > button {
+        font-size: 14px;
+        width: 4.5em;
+        height: 2em;
     }
 }

@@ -1,11 +1,6 @@
 
-const sequelize = require('../db/connection');
-const { DataTypes } = require('sequelize');
-
-
-const Event = require('./Event')(sequelize, DataTypes);
+const Event = require('./Event');
 
 module.exports = {
-  sequelize,
   Event
 };
